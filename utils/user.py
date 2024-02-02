@@ -5,3 +5,9 @@ class UserInfo(StatesGroup):
     degre = State()
     course = State()
     group = State()
+
+class UserInfoUpdate(StatesGroup):
+    """ THIS IS A STATE FOR UPDATING/EDIT/CHANGE USER INFO """
+    degre = State()
+    course = State()
+    group = State()

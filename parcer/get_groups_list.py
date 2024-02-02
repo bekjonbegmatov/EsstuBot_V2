@@ -5,6 +5,9 @@ import json
 """ THIS SCRIPT CAN GET ALL GROUPS ID AND SAVE TO FILES """
 
 def get_list():
+    """ AAAAAAAAAAAAAA BU MANI ULDIRIB QUYADI KUUUUUUUUUUUUUU !!!!!!
+        I WAS STUPED END MAKE A MISTAKE I'M BROKEN AAAA
+    """
     i = 208
     data = {}
     while i != 213 :

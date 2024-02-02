@@ -25,17 +25,29 @@ class Users:
         return data
     
     def chaeck_users(self, user_id:int) -> bool:
-        '''The method for cheking users into the database'''
+        ''' The method for cheking users into the database  '''
         user = self.cursor.execute('SELECT * FROM Users WHERE user_id == ?', (user_id,)).fetchall()
         if len(user) == 0 : return False
         return user[0]
 
-    # The method for exporting users to json file 
     def export_to_json(self) -> bool:
+        """ The method for exporting users to json file """
         query = 'SELECT * from Users'
         data = self.cursor.execute(query).fetchall()
         with open("Users.json", "w") as f:
             json.dump(data, f)
+    def get_user(self, user_id:int):
+        """ The method for retting user if user not found returns False """
+        return self.chaeck_users(user_id=user_id)
+    
+    def update_user_data(self, user_id:int, degre:str, course:int, grup:str):
+        """ The method hor updating user data """
+        try :
+            self.cursor.execute(f'UPDATE Users SET degre = {degre}, course = {course}, grup = {grup} WHERE user_id = {user_id}')
+            self.conn.commit()
+            return True
+        except : 
+            return False
             
  # The class of admins
 class Admin:

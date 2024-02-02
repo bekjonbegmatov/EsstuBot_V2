@@ -1,4 +1,4 @@
-import parce_todo , parce_j
+from parcer import parce_todo , parce_j
 import json
 
 """
