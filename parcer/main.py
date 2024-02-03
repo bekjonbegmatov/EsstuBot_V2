@@ -1,4 +1,5 @@
 from parcer import parce_todo , parce_j
+# import parce_j , parce_todo
 import json
 
 """
@@ -24,16 +25,16 @@ import json
 """
 
 def get_schedule(degre:str, course:str, group:str):
-    try:
-        with open('data/json/groups_key.json', 'r') as f:
-            data = json.load(f)
-        id = data[degre][course][group]
-        raspi = parce_todo.Schedule(schedule=id).save_schedule_to_json(filename='schedule.json')
-        res = parce_j.get_schedule_file()
-        return res
+    # try:
+    with open('data/json/groups_key_v2.json', 'r') as f:
+        data = json.load(f)
+    url = data[degre][course][group]
+    raspi = parce_todo.Schedule(schedule_url=url).save_schedule_to_json(filename='schedule.json')
+    res = parce_j.get_schedule_file()
+    return res
 
-    except :
-        return False
+    # except :
+    #     return False
     
 # print(get_schedule(degre='bakalavr', course='1', group='Б733-2'))
 """ 
@@ -42,3 +43,6 @@ def get_schedule(degre:str, course:str, group:str):
 
     [print(f'{data['day_1']['day']}\n{t['time']}\n{t['subject_type']}\n{t['subject_name']}\n{t['teacher_name']}\n{t['classroom']}\n') for t in data['day_1']['data']]
 """
+# data = get_schedule(degre='bakalavr', course='1', group='Б743')
+
+# [print(f'{data['day_1']['day']}\n{t['time']}\n{t['subject_type']}\n{t['subject_name']}\n{t['teacher_name']}\n{t['classroom']}\n') for t in data['day_1']['data']]

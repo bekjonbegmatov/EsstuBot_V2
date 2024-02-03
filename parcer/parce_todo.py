@@ -19,14 +19,14 @@ THE CLEASS FOR GETTING SCHELDULE ANY GROUPS
 class Schedule:
 
     # Init the class 
-    def __init__(self, schedule: int) -> None:
-        self.schedule = schedule
+    def __init__(self, schedule_url: str) -> None:
+        self.schedule_url = schedule_url
         self.main_url = 'https://portal.esstu.ru/bakalavriat/'
 
     # Prinate method for getting a page
     def __get_page(self):
-        url = f'{self.main_url}{self.schedule}.htm'
-        data = requests.get(url=url)
+        # url = f'{self.main_url}{self.schedule}.htm'
+        data = requests.get(url=self.schedule_url)
         return data.text
 
     def __parse_page(self):

@@ -43,7 +43,8 @@ class Users:
     def update_user_data(self, user_id:int, degre:str, course:int, grup:str):
         """ The method hor updating user data """
         try :
-            self.cursor.execute(f'UPDATE Users SET degre = {degre}, course = {course}, grup = {grup} WHERE user_id = {user_id}')
+            sql_query = 'UPDATE Users SET degre = ?, course = ?, grup = ? WHERE user_id = ?'
+            self.cursor.execute(sql_query, (degre, course, grup, user_id))
             self.conn.commit()
             return True
         except : 
@@ -72,3 +73,4 @@ class Admin:
 
 
 # Users().create_user(user_id=13123, usename='behruz', degre='bakalavr', course=1, grup='B743' )
+# Users().update_user_data(user_id=5163141099 , degre='Бакалавриат, специалитет', course=1 , grup='8925433')

@@ -4,6 +4,7 @@ def menu_button():
     bulder = InlineKeyboardBuilder()
     bulder.button(text='👤Аккаунт👤' , callback_data="get_account")
     bulder.button(text='📝Pасписание📝' , callback_data="get_raspisaniya")
+    bulder.button(text='📆Pасписание сегодня📆' , callback_data="get_todays_data")
     return bulder.as_markup()
 
 def profile():
@@ -30,12 +31,12 @@ def days(week:int):
     if week == 1:
         i = 1
         for day in texts:
-            bulder.button(text=day , callback_data=f"get_schedule_{i}")
+            bulder.button(text=day , callback_data=f"get_schedule_{i}_1")
             i+=1
     else:
         i = 1
         for day in texts:
-            bulder.button(text=day , callback_data=f"get_schedule_{i+6}")
+            bulder.button(text=day , callback_data=f"get_schedule_{i+6}_2")
             i+=1
     bulder.button(text='⬅️ Назад ⬅️' , callback_data="back_to_menu")
     bulder.adjust(2,2,2,1)
