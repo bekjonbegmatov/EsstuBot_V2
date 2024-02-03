@@ -31,7 +31,7 @@ async def parse_read(call:CallbackQuery):
     user_info = Users().chaeck_users(user_id=call.from_user.id)
     data = get_schedule(degre='bakalavr', course=str(user_info[4]), group=user_info[5])
 
-    text = f'Расписание для : {data[day]['day']} неделя {wek} \n\n'
+    text = f"Расписание для : {data[day]['day']} неделя {wek} \n\n"
     for t in data[day]['data']:
         text += f"""┍<b>Время :</b> <code>{t['time']}</code>
 ├<b>Тип :</b> <code>{t['subject_type']}</code>

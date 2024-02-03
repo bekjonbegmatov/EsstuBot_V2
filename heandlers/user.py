@@ -31,7 +31,7 @@ async def get_course(message:Message, state:FSMContext):
 async def get_course(message:Message, state:FSMContext):
     data = await state.get_data()
     if check_user_group(kourse=data['course'], group=message.text):
-        text = f'Uruvun : {data['degre']}\nKurs : {data['course']}\nGruppa : {message.text}\n\n'
+        text = f"Uruvun : {data['degre']}\nKurs : {data['course']}\nGruppa : {message.text}\n\n"
         await message.answer(text=text, reply_markup=ReplyKeyboardRemove())
         await state.clear()
         # Adding usert to db
@@ -76,7 +76,7 @@ async def get_course(message:Message, state:FSMContext):
 async def get_course(message:Message, state:FSMContext):
     data = await state.get_data()
     if check_user_group(kourse=data['course'], group=message.text):
-        text = f'Uruvun : {data['degre']}\nKurs : {data['course']}\nGruppa : {message.text}\n\n'
+        text = f"Uruvun : {data['degre']}\nKurs : {data['course']}\nGruppa : {message.text}\n\n"
         await message.answer(text=text, reply_markup=ReplyKeyboardRemove())
         await state.clear()
         # Adding usert to db

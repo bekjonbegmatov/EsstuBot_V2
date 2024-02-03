@@ -21,7 +21,7 @@ def get_todays_data(degre:str, course:str, group:str):
         day = 'day_'+str(today.weekday()+7)
 
     data = main.get_schedule(degre=degre, course=course, group=group)
-    text = f'Расписание для : {data[day]['day']} неделя {wek} \n\n'
+    text = f"Расписание для : {data[day]['day']} неделя {wek} \n\n"
     for t in data[day]['data']:
         text += f"""┍<b>Время :</b> <code>{t['time']}</code>
 ├<b>Тип :</b> <code>{t['subject_type']}</code>
