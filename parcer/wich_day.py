@@ -14,8 +14,11 @@ def wich_day_is_it():
 
 def get_todays_data(degre:str, course:str, group:str):
     today = datetime.now()
-    day = 'day_'+str(today.weekday()+1)
+    
     wek = wich_day_is_it()
+    day = 'day_'+str(today.weekday()+1)
+    if wek == '2':
+        day = 'day_'+str(today.weekday()+7)
 
     data = main.get_schedule(degre=degre, course=course, group=group)
     text = f'Расписание для : {data[day]['day']} неделя {wek} \n\n'

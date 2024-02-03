@@ -2,6 +2,7 @@ from aiogram import Router
 from aiogram.types import Message 
 from aiogram.filters import Command
 from aiogram.fsm.context import FSMContext
+from aiogram.enums.parse_mode import ParseMode
 
 # Import state
 from utils.user import UserInfo
@@ -25,9 +26,26 @@ async def start_message(message:Message, state:FSMContext):
         text = f'Привет {message.from_user.first_name} !\nЯ помню тебя.\nДумаю что эти данные ещё актуален : \n{user[3]}\nКурс : {user[4]}\nГруппа : {user[5]}.\nВыбирай'
         await message.answer(text=text, reply_markup=menu_button())
 
+@router.message(Command('menu'))
+async def back_to_menu(message:Message):
+    await message.answer(text='Выбирай', reply_markup=menu_button())
+
 @router.message(Command('help'))
 async def help_command(message:Message):
-    await message.bot.send_message(chat_id=message.chat.id, text='this is a help menu')
+    text = """🏫 ВСГУТУ Расписание Бот
+
+💫Создатель студент первого курса, ИCиТ <b>Бегматов Бехруз 🥵</b>
+
+🔍 Нашли <b>баг или ошибку</b> сообщите по этому адресу :
+📎 https://github.com/bekjonbegmatov/EsstuBot_V2/issues
+
+📨 Этот проект является открытием и вы можете <b>добавить</b> свои улучшения
+📥 : https://github.com/bekjonbegmatov/EsstuBot_V2
+
+🤫 А также первая версия бота, <b>PS: Работает исключительно для одного группы</b>
+📎 https://github.com/bekjonbegmatov/esstu_bot
+"""
+    await message.bot.send_message(chat_id=message.chat.id, text=text , parse_mode=ParseMode.HTML)
 
 router.include_routers(
     user_router

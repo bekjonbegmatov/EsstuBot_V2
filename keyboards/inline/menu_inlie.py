@@ -2,9 +2,10 @@ from aiogram.utils.keyboard import InlineKeyboardBuilder
 
 def menu_button():
     bulder = InlineKeyboardBuilder()
+    bulder.button(text='📆Pасписание сегодня📆' , callback_data="get_todays_data")
     bulder.button(text='👤Аккаунт👤' , callback_data="get_account")
     bulder.button(text='📝Pасписание📝' , callback_data="get_raspisaniya")
-    bulder.button(text='📆Pасписание сегодня📆' , callback_data="get_todays_data")
+    bulder.adjust(1,2)
     return bulder.as_markup()
 
 def profile():
