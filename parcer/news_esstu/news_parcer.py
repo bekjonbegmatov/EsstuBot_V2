@@ -1,5 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
+from urllib.parse import urlparse
+import os
 
 class ESSTU_New:
     """ This Class for parsing news from esstu.ru 
@@ -57,8 +59,19 @@ class ESSTU_New:
             "info" : info,
             "url" : url
         }
+
+        self.image_url = img
         return data
 
+    def download_image(self) -> str:
+        """ This method downloads image and returns full path of image """
+        url = f"https://esstu.ru{self.image_url}"
+        req = requests.get(url=url, allow_redirects=True).content
+        with open('data/img/news.png', 'wb') as handler:
+            handler.write(req)
+        return os.getcwd() + "/data/img/news.png"
+        # return url
+        
     def is_any_news(self) -> bool:
         """ The method for checking for any news in esstu.ru"""
         last_id = self.__get_last_id()

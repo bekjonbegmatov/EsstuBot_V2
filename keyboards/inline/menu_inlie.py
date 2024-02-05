@@ -42,3 +42,10 @@ def days(week:int):
     bulder.button(text='⬅️ Назад ⬅️' , callback_data="back_to_menu")
     bulder.adjust(2,2,2,1)
     return bulder.as_markup()
+
+# FOR NEWS 
+
+def news_link_button(url:str):
+    builder = InlineKeyboardBuilder()
+    builder.button(text='📖 читать полностью 📖', url=url)
+    return builder.as_markup()
