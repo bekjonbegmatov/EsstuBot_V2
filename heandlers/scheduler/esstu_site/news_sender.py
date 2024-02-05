@@ -4,7 +4,7 @@ from aiogram.types import Message , InputMediaPhoto , FSInputFile
 from parcer.news_esstu.news_parcer import ESSTU_New
 from aiogram.enums.parse_mode import ParseMode
 from keyboards.inline.menu_inlie import news_link_button
-
+from data.databace import Users
 
 async def send_news(bot:Bot):
     esstu = ESSTU_New()
@@ -22,12 +22,16 @@ async def send_news(bot:Bot):
 
 <b>{data['info']}</b>
 """
-        await bot.send_photo(
-            photo=FSInputFile(
-                path=image,
-                ),
-            chat_id=5163141099,
-            caption=caption,
-            parse_mode=ParseMode.HTML, 
-            reply_markup=news_link_button(url=data['url']))
+        for user in Users().get_all_users():
+            try:
+                await bot.send_photo(
+                    photo=FSInputFile(
+                        path=image,
+                        ),
+                    chat_id=user[1],
+                    caption=caption,
+                    parse_mode=ParseMode.HTML, 
+                    reply_markup=news_link_button(url=data['url']))
+            except:
+                pass
 
