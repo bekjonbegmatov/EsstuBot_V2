@@ -6,7 +6,7 @@ import asyncio
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from datetime import datetime, timedelta, timezone
 
-from heandlers.scheduler.scheduler import send_todays_data
+from heandlers.scheduler.scheduler import send_todays_data , send_tomorows_data
 from heandlers.scheduler.esstu_site.news_sender import send_news
 
 # Import router from heandlers/start.py 
@@ -20,11 +20,14 @@ async def main():
     bot = Bot(token=config.TOCEN)
     dp = Dispatcher()
 
-    
+    """ This is a shedulers hahahahaha !!!! """
     scheduler = AsyncIOScheduler(timezone='Asia/Irkutsk')
-    scheduler.add_job(func=send_todays_data,args=[bot], trigger='cron', hour=7, minute=0)
-    # scheduler.add_job(func=news_sender, args=[bot], trigger='interval', seconds=10)
-    scheduler.add_job(send_news, trigger='interval', seconds=10, args=[bot])
+    # This sheduler for sending todays data in 7:00 am 
+    scheduler.add_job(func=send_todays_data, args=[bot], trigger='cron', hour=7, minute=0)
+    # This sheduler for sending tomorows data in 7:00 pm
+    scheduler.add_job(func=send_tomorows_data, args=[bot], trigger='cron', hour=19, minute=0)
+    # This sheduler for checking news in esstu.ru 
+    scheduler.add_job(send_news, trigger='interval', seconds=30, args=[bot])
 
     scheduler.start()
     # Conecting router to the bot

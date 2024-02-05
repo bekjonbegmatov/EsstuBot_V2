@@ -13,12 +13,33 @@ def wich_day_is_it():
     return '2'
 
 def get_todays_data(degre:str, course:str, group:str):
+    """ This function returns todays data """
     today = datetime.now()
     
     wek = wich_day_is_it()
     day = 'day_'+str(today.weekday()+1)
     if wek == '2':
         day = 'day_'+str(today.weekday()+7)
+
+    data = main.get_schedule(degre=degre, course=course, group=group)
+    text = f"Расписание для : {data[day]['day']} неделя {wek} \n\n"
+    for t in data[day]['data']:
+        text += f"""┍<b>Время :</b> <code>{t['time']}</code>
+├<b>Тип :</b> <code>{t['subject_type']}</code>
+├<b>Придмет :</b> <code>{t['subject_name']}</code>
+├<b>Преподаватель :</b> <code>{t['teacher_name']}</code>
+└<b>Аудитория :</b> <code>{t['classroom']}</code>\n
+"""
+    return text
+
+def get_tomorows_data(degre:str, course:str, group:str):
+    """ This function returns tomorows data """
+    today = datetime.now()
+    
+    wek = wich_day_is_it()
+    day = 'day_'+str(today.weekday()+2)
+    if wek == '2':
+        day = 'day_'+str((today.weekday()+8)%12)
 
     data = main.get_schedule(degre=degre, course=course, group=group)
     text = f"Расписание для : {data[day]['day']} неделя {wek} \n\n"
