@@ -31,7 +31,7 @@ async def get_course(message:Message, state:FSMContext):
 async def get_course(message:Message, state:FSMContext):
     data = await state.get_data()
     if check_user_group(kourse=data['course'], group=message.text):
-        text = f"Uruvun : {data['degre']}\nKurs : {data['course']}\nGruppa : {message.text}\n\n"
+        text = f"Ваш акаунт : \n{data['degre']}\nКурс : {data['course']}\nГруппа : {message.text}\n\n"
         await message.answer(text=text, reply_markup=ReplyKeyboardRemove())
         await state.clear()
         # Adding usert to db
@@ -50,7 +50,6 @@ async def get_course(message:Message, state:FSMContext):
 
 @router.callback_query(F.data == 'edit_profile')
 async def edit_profile(call:CallbackQuery, state:FSMContext):
-    print('-_-_-_-_-_-_-_-_-_-_-_')
     await state.set_state(UserInfoUpdate.degre)
     await call.message.delete()
     await call.message.bot.send_message(chat_id=call.from_user.id, text='Выбирай', reply_markup=level_button())

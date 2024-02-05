@@ -8,6 +8,7 @@ from aiogram.enums.parse_mode import ParseMode
 from utils.user import UserInfo
 # Import an other Routers
 from heandlers.user import router as user_router
+
 # Import DATABESE manager
 from data.databace import Users
 from keyboards.simple.user_r import level_button
@@ -48,5 +49,5 @@ async def help_command(message:Message):
     await message.bot.send_message(chat_id=message.chat.id, text=text , parse_mode=ParseMode.HTML)
 
 router.include_routers(
-    user_router
+    user_router,
 )

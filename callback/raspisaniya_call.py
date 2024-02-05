@@ -6,13 +6,14 @@ from data.databace import Users
 from keyboards.inline.menu_inlie import select_week, days, menu_button
 from data.databace import Users
 from parcer.main import get_schedule
-from parcer.wich_day import get_todays_data as todays_data_function
+from parcer.wich_day import wich_day_is_it, get_todays_data as todays_data_function
 
 router = Router()
 
 @router.callback_query(F.data == 'get_raspisaniya')
 async def get_raspisaniya(call:CallbackQuery):
-    await call.message.edit_text(text='⬇️ Выберите неделю ⬇️', reply_markup=select_week())
+    week = wich_day_is_it()
+    await call.message.edit_text(text=f"⬇️ Выберите неделю cейчас ({week}) ⬇️", reply_markup=select_week())
 
 @router.callback_query(F.data.startswith('week_'))
 async def week(call:CallbackQuery):

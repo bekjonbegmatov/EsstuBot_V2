@@ -11,3 +11,5 @@ class UserInfoUpdate(StatesGroup):
     degre = State()
     course = State()
     group = State()
+
+# class Chat
